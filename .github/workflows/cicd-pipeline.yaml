@@ -1,0 +1,25 @@
+name: DevOps CID Demo
+
+# Trigger
+on:
+    push:
+        branches:
+            main
+
+# Jobs
+jobs:
+    test:
+        name: Run tests # name of job
+        runs-on: ubuntu-latest # runner
+
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Setup golang
+              uses: actions/setup-go@v2
+              with:
+                go-version: '1.21'
+
+            - name: run test cases
+              run: |
+                go test ./...
